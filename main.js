@@ -1,5 +1,12 @@
 const technosDiv = document.querySelector('#technos');
 
+// ..
+if(navigator.serviceWorker) {
+    navigator.serviceWorker
+        .register('sw.js')
+        .catch(err => console.error('service worker NON enregistré', err));
+}
+
 function loadTechnologies(technos) {
     fetch('http://localhost:3001/technos')
         .then(response => {
