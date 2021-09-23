@@ -61,6 +61,21 @@ self.addEventListener('fetch', (evt) => {
     );
 });
 
+// 8.1 Intercepter une notification push
+self.addEventListener("push", evt => {
+    console.log("push event", evt);
+    console.log("data envoyée par la push notification :", evt.data.text());
+
+    // 8.1 afficher son contenu dans une notification
+    const title = evt.data.text();
+    const objNotification = {
+        body: "ça fonctionne",
+        icon : "images/icons/icon-72x72.png"
+    };
+    self.registration.showNotification(title, objNotification);
+})
+
+/*
 // 7.3 Notifications persistantes (envoyées depuis le service worker)
 // Affichage de la notification
 self.registration.showNotification("Notification du SW", {
@@ -96,7 +111,7 @@ self.addEventListener("notificationclick", evt => {
 
     // 7.5 Fermer programmatiquement une notification
     evt.notification.close();
-})
+})*/
 
 /*self.addEventListener('fetch', (evt) => {
     if(!navigator.onLine) {
